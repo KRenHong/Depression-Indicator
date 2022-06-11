@@ -44,7 +44,7 @@ with st.spinner("Loading Model. . . ."):
     new_model = load_model()
 
 with st.form(key = 'form_1'):
-    input_1 = st.text_area(label = 'Please enter one sentence to represent your feelings', height=250)
+    input_1 = st.text_area(label = 'Please enter one sentence to represent your feelings', height=100)
     confirm_button = st.form_submit_button(label= 'Confirm')
     arr = np.array([input_1])
     padded_sentence = sentence_process(arr)
@@ -55,6 +55,7 @@ with st.form(key = 'form_1'):
         st.success("You are happy")
     elif 0.5 <= results[0,0] <= 0.75:
         results_2 = "Mild depression"
+        advice = "Guided self-help: The person may follow an online course or manual with the support of a therapist. The course aims to provide tools that enable a person to make helpful changes"
         st.info("Mild depression")
     elif 0.25 <= results[0,0] <= 0.5:
         results_2 = "Moderate depression"
@@ -77,7 +78,7 @@ for percent_complete in range(int(results[0,0] * 100)):
 
 resultPercentage = "{:.2f}".format(results[0,0] * 100)
 st.markdown(f"The Probability of not being depressed : {resultPercentage} %")
-st.markdown("## Advice for User")
+st.markdown("## Advice for " + f"{results_2}")
 st.info(advice)
 
 
