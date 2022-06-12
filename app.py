@@ -74,7 +74,7 @@ st.markdown(f"Predictions : {results_2}")
 my_bar = st.progress(0)
 
 for percent_complete in range(int(results[0,0] * 100)):
-    time.sleep(0.5)
+    time.sleep(0.01)
     my_bar.progress(percent_complete + 1)
 
 resultPercentage = "{:.2f}".format(results[0,0] * 100)
